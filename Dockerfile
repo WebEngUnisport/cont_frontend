@@ -1,3 +1,9 @@
 FROM node:latest
-RUN npm install pm2 -g
-RUN npm install express -g
+
+COPY ./serv ./frontend
+
+WORKDIR /frontend
+
+RUN npm install
+
+CMD node ./serv.js
