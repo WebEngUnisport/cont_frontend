@@ -21,7 +21,7 @@ var app = module.exports = express();
  */
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', 8080);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(morgan('dev'));
@@ -33,7 +33,7 @@ var env = process.env.NODE_ENV || 'development';
 
 // development only
 if (env === 'development') {
-  app.use(express.errorHandler());
+  //app.use(express.errorHandler());
 }
 
 // production only
