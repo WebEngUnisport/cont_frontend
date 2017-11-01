@@ -20,7 +20,7 @@ angular.module('myApp.controllers', []).
   controller('seeMessagesCtrl', function ($scope, $http) {
     $http({
       method: 'GET',
-      url: 'http://localhost:10080/api/messages'
+      url: 'http://webengi.marom.ch:10080/api/messages'
     }).
     success(function (data, status, headers, config) {
       $scope.messages = data;
@@ -35,7 +35,7 @@ angular.module('myApp.controllers', []).
     $scope.processForm = function(){
       $http({
   	method  : 'POST',
-  	url     : 'http://localhost:10080/api/messages',
+  	url     : 'http://webengi.marom.ch:10080/api/messages',
   	data    : $.param($scope.formData),  // pass in data as strings
   	headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
  	})
