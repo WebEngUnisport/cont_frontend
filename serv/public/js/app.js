@@ -10,16 +10,16 @@ angular.module('myApp', [
 ]).
 config(function ($routeProvider, $locationProvider) {
   $routeProvider.
-    when('/view1', {
-      templateUrl: 'partials/partial1',
-      controller: 'MyCtrl1'
+    when('/seeMessages', {
+      templateUrl: 'partials/seeMessages',
+      controller: 'seeMessagesCtrl'
     }).
-    when('/view2', {
-      templateUrl: 'partials/partial2',
-      controller: 'MyCtrl2'
+    when('/sendMessage', {
+      templateUrl: 'partials/sendMessage',
+      controller: 'sendMessageCtrl'
     }).
     otherwise({
-      redirectTo: '/view1'
+      redirectTo: '/seeMessages'
     });
 
   $locationProvider.html5Mode(true);

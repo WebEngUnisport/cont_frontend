@@ -23,7 +23,7 @@ var app = module.exports = express();
 // all environments
 app.set('port', 8080);
 app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 app.use(morgan('dev'));
 app.use(bodyParser());
 app.use(methodOverride());
