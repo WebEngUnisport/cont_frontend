@@ -18,6 +18,10 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/sendMessage',
       controller: 'sendMessageCtrl'
     }).
+    when('/login', {
+      templateUrl: 'partials/login',
+      controller: 'Login'
+    }).
     otherwise({
       redirectTo: '/seeMessages'
     });
