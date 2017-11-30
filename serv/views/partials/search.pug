@@ -1,0 +1,18 @@
+div(ng-controller='Search').container
+    div.col-md-0
+        ul.nav.nav-pills.nav-stacked
+            li.active Search by
+            li
+                a(href="subPage='search/uni'") University
+            li
+                a(href="subPage='search/categories'") Categories
+            li
+                a(href="subPage='search/courses'") Courses
+    div.col-md-1
+        ng-include(src="subPage")
+
+    form(action="ng-submit='processForm()'")
+        div.form-group
+            h2 Categories
+            select.form-control
+                option {{categories}}

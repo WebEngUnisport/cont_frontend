@@ -22,6 +22,10 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/login',
       controller: 'Login'
     }).
+    when('/search', {
+      templateUrl: 'partials/search',
+      controller: 'Search'
+    }).
     otherwise({
       redirectTo: '/seeMessages'
     });

@@ -21,7 +21,7 @@ var app = module.exports = express();
  */
 
 // all environments
-app.set('port', 8080);
+app.set('port', 8088);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
 app.use(morgan('dev'));
