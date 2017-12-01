@@ -1,11 +1,11 @@
 div(ng-controller='Login').container
   form(ng-submit='processForm()').form-signin
     h2.from-signin-heading Please sign in
-    input(type='text'
+    input(type='email'
         ng-model="formData.email"
         placeholder="Email address"
        ).form-control
-    input(type='email'
+    input(type='password'
         ng-model="formData.password"
         placeholder="Password").form-control
     button(

@@ -1,20 +1,10 @@
 angular.module('myApp.controllers').
-controller('Login', function ($scope, $http) {
+controller('Login', ['AuthenticationService','$scope',function (AuthenticationService,$scope) {
 
     $scope.formData = {};
     $scope.processForm = function(){
-	console.log($scope.formData)
-      $http({
-  	method  : 'POST',
-  	url     : 'http://localhost:10080/api/login',
-  	data    : $.param($scope.formData),  // pass in data as strings
-  	headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
- 	})
-  	.success(function(data) {
-    	console.log(data);
-        var info = angular.element( document.querySelector('#info'));
-        info.html("Message: '"+$scope.formData.content+"' send with success!");
-  	});
-	}
-
-  })
+      AuthenticationService.Login($scope.formData.email,$scope.formData.password, function(response){
+        console.log(response);
+      });
+    }
+  }]);
