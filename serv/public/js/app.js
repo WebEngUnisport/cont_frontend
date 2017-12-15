@@ -23,6 +23,18 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/login',
       controller: 'Login'
     }).
+    when('/search/uni', {
+      templateUrl: 'partials/uni',
+      controller: 'Search'
+    }).
+    when('/search/categories', {
+      templateUrl: 'partials/categories',
+      controller: 'Search'
+    }).
+    when('/search/courses', {
+      templateUrl: 'partials/courses',
+      controller: 'Search'
+    }).
     when('/search', {
       templateUrl: 'partials/search',
       controller: 'Search'
