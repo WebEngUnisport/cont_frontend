@@ -1,5 +1,5 @@
 {
-  "name": "Unisport9_Frontend",
+  "name": "unisport9_frontend",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
@@ -15,5 +15,22 @@
   },
   "scripts": {
     "start": "node app.js"
-  }
+  },
+  "description": "Nodejs docker container",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebEngUnisport/cont_frontend.git"
+  },
+  "keywords": [
+    "unisport9",
+    "frontend"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WebEngUnisport/cont_frontend/issues"
+  },
+  "homepage": "https://github.com/WebEngUnisport/cont_frontend#readme"
 }

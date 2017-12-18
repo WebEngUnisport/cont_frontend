@@ -27,7 +27,7 @@ controller('Search', function ($scope, $http) {
        .
        success(function (data, status, headers, config) {
             $scope.categories = data;
-            console.log(data);
+            console.log(data[0]['Name']);
        }).
        error(function(error){
            console.log("Error on server");
@@ -46,7 +46,7 @@ controller('Search', function ($scope, $http) {
        .
        success(function (data, status, headers, config) {
             $scope.categories = data;
-            console.log(data);
+            console.log(data[0]['Name']);
        }).
        error(function(error){
            console.log("Error on server");
@@ -60,7 +60,7 @@ controller('Search', function ($scope, $http) {
 
     $http({
         method  : 'GET',
-        url     : backend+'/categories'
+        url     : backend+'/universities'
        })
        .
        success(function (data, status, headers, config) {

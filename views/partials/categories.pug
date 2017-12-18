@@ -5,4 +5,8 @@ div()
         form(action="ng-submit='processForm()'")
                     div.form-group
                         select.form-control
-                            option {{categories}}
+                            option(ng-repeat="v in categories" id="{{v['_id']}}") {{v['Name']}}
+                        br
+                        button(
+                            type='submit'
+                            ).btn.btn-lg.btn-primary.btn-block Seach
