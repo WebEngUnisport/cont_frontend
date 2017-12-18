@@ -1,6 +1,6 @@
 FROM node:latest
 
-COPY ./serv ./frontend
+COPY . ./frontend
 
 WORKDIR /frontend
 
