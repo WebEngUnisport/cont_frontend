@@ -2,11 +2,15 @@ div()
     div.container
         h1 Search by categories
     div.container
-        form(action="ng-submit='processForm()'")
+        form(ng-submit='processForm()')
                     div.form-group
-                        select.form-control
-                            option(ng-repeat="v in categories" id="{{v['_id']}}") {{v['Name']}}
+                        select(ng-model="formData.select" ng-options="cat['Code'] as cat['Name'] for cat in categories").form-control
                         br
                         button(
                             type='submit'
-                            ).btn.btn-lg.btn-primary.btn-block Seach
+                            ).btn.btn-lg.btn-primary.btn-block Search
+
+        div(id="results").container
+            div(ng-repeat="course in courses" ng-click="ViewCourse(course['_id'])" class="uni9-div-res")
+                h3 {{course['sport']}}
+                p {{course['activity']}}

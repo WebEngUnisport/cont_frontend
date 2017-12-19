@@ -28,3 +28,11 @@
   content: "";
   padding: 0;
 }
+
+.uni9-div-res {
+  border-width: 1px;
+  border-color: black;
+  padding: 3px;
+  margin-bottom: 1em;
+  background-color: gainsboro;
+}
