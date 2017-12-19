@@ -18,7 +18,7 @@ controller('Search', function ($scope, $http) {
     
 	}
 
-  }).controller('Categories', ['$scope','$http','backend',function ($scope, $http,backend) {
+  }).controller('Categories', ['$scope','$http','$rootScope','$location','backend',function ($scope, $http,$rootScope,$location,backend) {
 
     $http({
         method  : 'GET',
@@ -52,17 +52,8 @@ controller('Search', function ($scope, $http) {
     }
 
     $scope.ViewCourse = function(id){
-        $http({
-            method  : 'GET',
-            url     : backend+'/course/'+id
-           })
-           .
-           success(function (data, status, headers, config) {
-                console.log(data);
-           }).
-           error(function(error){
-               console.log("Error on server");
-           });
+        $rootScope.courseToShow = id;        
+        $location.path('showCourse');
         //console.log(id);
     }
 
@@ -103,5 +94,21 @@ controller('Search', function ($scope, $http) {
     $scope.processForm = function(){
     
 	}
+
+  }]).controller('ShowCourses', ['$scope','$http','$rootScope','backend',function ($scope, $http,$rootScope,backend) {
+
+    $http({
+        method  : 'GET',
+        url     : backend+'/course/'+$rootScope.courseToShow
+       })
+       .
+       success(function (data, status, headers, config) {
+           data['description'] = data['description'].replace(new RegExp("\n",'g'),'<br\>');
+           $scope.courses = data;
+           $('#description').html(data['description']);
+       }).
+       error(function(error){
+           console.log("Error on server");
+       });
 
   }])

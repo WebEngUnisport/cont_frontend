@@ -38,6 +38,10 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/search',
       controller: 'Search'
     }).
+    when('/showCourse', {
+      templateUrl: 'partials/showCourses',
+      controller: 'ShowCourses'
+    }).
     otherwise({
       redirectTo: '/seeMessages'
     });
