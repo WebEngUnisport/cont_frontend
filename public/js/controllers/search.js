@@ -1,24 +1,33 @@
 angular.module('myApp.controllers').
-controller('Search', function ($scope, $http) {
+controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',function ($scope, $http,$rootScope,$location,backend) {
 
     $http({
         method  : 'GET',
-        url     : 'http://localhost:8080/categories'
+        url     : backend+'/courses'
        })
        .
        success(function (data, status, headers, config) {
-            $scope.categories = data;
-            console.log(data);
+        printCourses(data);
        }).
        error(function(error){
            console.log("Error on server");
        });
-    $scope.formData = {};
-    $scope.processForm = function(){
     
-	}
+    var printCourses = function(data){
+        $('#results').css('display',"block");
+        $scope.courses = data;
+        //$('#results').text("test");
+    }
 
-  }).controller('Categories', ['$scope','$http','$rootScope','$location','backend',function ($scope, $http,$rootScope,$location,backend) {
+    $scope.ViewCourse = function(id){
+        $rootScope.courseToShow = id;        
+        $location.path('showCourse');
+        //console.log(id);
+    }
+    
+}
+
+  ]).controller('Categories', ['$scope','$http','$rootScope','$location','backend',function ($scope, $http,$rootScope,$location,backend) {
 
     $http({
         method  : 'GET',
@@ -57,25 +66,6 @@ controller('Search', function ($scope, $http) {
         $location.path('showCourse');
         //console.log(id);
     }
-
-  }]).controller('Courses', ['$scope','$http','$rootScope','$location','backend',function ($scope, $http$rootScope,$location,backend) {
-
-    $http({
-        method  : 'GET',
-        url     : backend+'/categories'
-       })
-       .
-       success(function (data, status, headers, config) {
-            $scope.categories = data;
-            console.log(data[0]['Name']);
-       }).
-       error(function(error){
-           console.log("Error on server");
-       });
-    $scope.formData = {};
-    $scope.processForm = function(){
-    
-	}
 
   }]).controller('Uni', ['$scope','$http','$rootScope','$location','backend',function ($scope, $http,$rootScope,$location,backend) {
 
@@ -137,5 +127,34 @@ controller('Search', function ($scope, $http) {
        error(function(error){
            console.log("Error on server");
        });
+
+  }]).controller('Days', ['$scope','$http','$rootScope','backend',function ($scope, $http,$rootScope,backend) {
+
+    $scope.formData = {};
+    $scope.processForm = function(){
+        $http({
+            method  : 'GET',
+            url     : backend+'/university/'+$scope.formData.select+"/courses"
+           })
+           .
+           success(function (data, status, headers, config) {
+                printCourses(data);
+           }).
+           error(function(error){
+               console.log("Error on server");
+           });
+    }
+    
+    var printCourses = function(data){
+        $('#results').css('display',"block");
+        $scope.courses = data;
+        //$('#results').text("test");
+    }
+
+    $scope.ViewCourse = function(id){
+        $rootScope.courseToShow = id;        
+        $location.path('showCourse');
+        //console.log(id);
+    }
 
   }])

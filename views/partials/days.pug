@@ -1,10 +1,17 @@
 div()
     div.container
-        h1 Search by Uni
+        h1 Search by day
     div.container
         form(ng-submit='processForm()')
                     div.form-group
-                        select(ng-model="formData.select" ng-options="uni['Code'] as uni['Name'] for uni in universities").form-control
+                        select(ng-model="formData.select").form-control
+                            option(value="monday") Monday
+                            option(value="thuesday") Thuesday
+                            option(value="wednesday") Wednesday
+                            option(value="thursday") Thursday
+                            option(value="friday") Friday
+                            option(value="saturnday") Saturnday
+                            option(value="sunday") Sunday
                         br
                         button(
                             type='submit'

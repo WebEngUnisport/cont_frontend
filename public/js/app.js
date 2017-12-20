@@ -28,7 +28,11 @@ config(function ($routeProvider, $locationProvider) {
     }).
     when('/search/courses', {
       templateUrl: 'partials/courses',
-      controller: 'Courses'
+      controller: 'AllCourses'
+    }).
+    when('/search/days', {
+      templateUrl: 'partials/days',
+      controller: 'Days'
     }).
     when('/search', {
       templateUrl: 'partials/search',

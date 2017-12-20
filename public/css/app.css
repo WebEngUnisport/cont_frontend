@@ -34,7 +34,8 @@
   border-color: black;
   padding: 3px;
   margin-bottom: 1em;
-  background-color: gainsboro;
+  background-color: gainsboro;  
+  cursor: pointer;
 }
 
 .uni9-div-pres-res{
@@ -43,11 +44,20 @@
   overflow-y: scroll;
 }
 
-.uni9-p-home{
+div.uni9-home p{
   margin-left: 1em;
 }
 
 .uni9-h1-home{
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.uni9-pres-res-right{
+  text-align: right;
+  margin-right: 10px;
+}
+
+.uni9-div-right{
+  background-color: darkgrey;
 }
