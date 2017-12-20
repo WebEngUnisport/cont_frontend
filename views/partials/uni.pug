@@ -2,7 +2,15 @@ div()
     div.container
         h1 Search by Uni
     div.container
-        form(action="ng-submit='processForm()'")
+        form(ng-submit='processForm()')
                     div.form-group
-                        select.form-control
-                            option {{categories}}
+                        select(ng-model="formData.select" ng-options="uni['Code'] as uni['Name'] for uni in universities").form-control
+                        br
+                        button(
+                            type='submit'
+                            ).btn.btn-lg.btn-primary.btn-block Search
+
+        div(id="results").container
+            div(ng-repeat="course in courses" ng-click="ViewCourse(course['_id'])" class="uni9-div-res")
+                h3 {{course['sport']}}
+                p {{course['activity']}}

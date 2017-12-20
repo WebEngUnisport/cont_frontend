@@ -57,7 +57,7 @@ controller('Search', function ($scope, $http) {
         //console.log(id);
     }
 
-  }]).controller('Courses', ['$scope','$http','backend',function ($scope, $http,backend) {
+  }]).controller('Courses', ['$scope','$http','$rootScope','$location','backend',function ($scope, $http$rootScope,$location,backend) {
 
     $http({
         method  : 'GET',
@@ -76,7 +76,7 @@ controller('Search', function ($scope, $http) {
     
 	}
 
-  }]).controller('Uni', ['$scope','$http','backend',function ($scope, $http,backend) {
+  }]).controller('Uni', ['$scope','$http','$rootScope','$location','backend',function ($scope, $http,$rootScope,$location,backend) {
 
     $http({
         method  : 'GET',
@@ -84,16 +84,37 @@ controller('Search', function ($scope, $http) {
        })
        .
        success(function (data, status, headers, config) {
-            $scope.categories = data;
-            console.log(data);
+            $scope.universities = data;
        }).
        error(function(error){
            console.log("Error on server");
        });
     $scope.formData = {};
     $scope.processForm = function(){
+        $http({
+            method  : 'GET',
+            url     : backend+'/university/'+$scope.formData.select+"/courses"
+           })
+           .
+           success(function (data, status, headers, config) {
+                printCourses(data);
+           }).
+           error(function(error){
+               console.log("Error on server");
+           });
+    }
     
-	}
+    var printCourses = function(data){
+        $scope.courses = data;
+        //$('#results').text("test");
+    }
+
+    $scope.ViewCourse = function(id){
+        $rootScope.courseToShow = id;        
+        $location.path('showCourse');
+        //console.log(id);
+    }
+    
 
   }]).controller('ShowCourses', ['$scope','$http','$rootScope','backend',function ($scope, $http,$rootScope,backend) {
 
@@ -103,9 +124,13 @@ controller('Search', function ($scope, $http) {
        })
        .
        success(function (data, status, headers, config) {
-           data['description'] = data['description'].replace(new RegExp("\n",'g'),'<br\>');
+           var description = "";
+           if('description' in data){
+            description = data['description'].replace(new RegExp("\n",'g'),'<br\>');
+           }
+           
            $scope.courses = data;
-           $('#description').html(data['description']);
+           $('#description').html(description);
        }).
        error(function(error){
            console.log("Error on server");
