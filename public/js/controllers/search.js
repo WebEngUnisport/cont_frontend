@@ -47,6 +47,7 @@ controller('Search', function ($scope, $http) {
     }
     
     var printCourses = function(data){
+        $('#results').css('display',"block");
         $scope.courses = data;
         //$('#results').text("test");
     }
@@ -105,6 +106,7 @@ controller('Search', function ($scope, $http) {
     }
     
     var printCourses = function(data){
+        $('#results').css('display',"block");
         $scope.courses = data;
         //$('#results').text("test");
     }

@@ -10,7 +10,7 @@ div()
                             type='submit'
                             ).btn.btn-lg.btn-primary.btn-block Search
 
-        div(id="results").container
+        div(id="results" class="uni9-div-pres-res").container
             div(ng-repeat="course in courses" ng-click="ViewCourse(course['_id'])" class="uni9-div-res")
                 h3 {{course['sport']}}
                 p {{course['activity']}}

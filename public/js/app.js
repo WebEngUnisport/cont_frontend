@@ -10,13 +10,9 @@ angular.module('myApp', [
 ]).
 config(function ($routeProvider, $locationProvider) {
   $routeProvider.
-    when('/seeMessages', {
-      templateUrl: 'partials/seeMessages',
-      controller: 'seeMessagesCtrl'
-    }).
-    when('/sendMessage', {
-      templateUrl: 'partials/sendMessage',
-      controller: 'sendMessageCtrl'
+    when('/', {
+      templateUrl: 'partials/home',
+      controller: 'Index'
     }).
     when('/login', {
       templateUrl: 'partials/login',
@@ -43,7 +39,7 @@ config(function ($routeProvider, $locationProvider) {
       controller: 'ShowCourses'
     }).
     otherwise({
-      redirectTo: '/seeMessages'
+      redirectTo: '/'
     });
 
   $locationProvider.html5Mode(true);
