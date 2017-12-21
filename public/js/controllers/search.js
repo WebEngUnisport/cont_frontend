@@ -68,7 +68,7 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
         if(id != "ALL"){
             for (var i = 0; i<$scope.data.length;i++){
                 var data = $scope.data[i]
-                if(data['university']['Code']==id){
+                if(data['university']['code']==id){
                     filtered.push(data);
                 }
             }

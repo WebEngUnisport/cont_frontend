@@ -9,19 +9,19 @@ div.container-fluid.row.uni9-home
             <b>So Unisport 9 is your saviour!</b>
     div.col-4.uni9-div-right
         h3 Try something new
-        div(ng-click="ViewCourse('sport')").uni9-div-res
-            div.row
-                div.col-4
-                    h4 A cool sport
-                div.col-5
-                div.col-3
-                    p Uni
+        div(ng-click="ViewCourse(course['_id'])").uni9-div-res
             div.row
                 div.col-5
-                    p Activity
+                    h5 {{course['sport']}}
+                div.col-5
+                div.col-2
+                    p {{course['university']['code']}}
+            div.row
+                div.col-5
+                    p {{course['category']['name']}}
                 div.col-2
                 div.col-5
-                    p.uni9-pres-res-right At some times
+                    p.uni9-pres-res-right {{course['times']}}{{course['day']}} {{course['time']}}
 
 div.container-fluid.row.uni9-home
     p.

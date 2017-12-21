@@ -4,7 +4,7 @@ div()
     div.container
         form(ng-submit='processForm()')
                     div.form-group
-                        select(ng-model="formData.select" ng-options="uni['Code'] as uni['Name'] for uni in universities").form-control
+                        select(ng-model="formData.select" ng-options="uni['code'] as uni['name'] for uni in universities").form-control
                         br
                         button(
                             type='submit'
@@ -17,7 +17,7 @@ div()
                         h5 {{course['sport']}}
                     div.col-5
                     div.col-2
-                        p {{course['university']['Code']}}
+                        p {{course['university']['code']}}
                 div.row
                     div.col-5
                         p {{course['category']['name']}}
