@@ -7,6 +7,20 @@ div.container-fluid.row.uni9-home
             - The universities sport website are too terrible at finding something?#[br]
             - You are a student that have courses in multiple universities?#[br]#[br]
             <b>So Unisport 9 is your saviour!</b>
+        
+        p.
+            With Unisport 9 you can search all the sports given by the universities of Neuchâtel, Bern and Fribourg.#[br]
+            We fetch all the essentials informations and serve them to you with 6 differents search methode:
+        ul
+            li By universities
+            li By categories
+            li By days
+            li By dates
+            li All the sport givin today
+            li The list of all sports
+        
+        p.
+            So enjoy sport!
     div.col-4.uni9-div-right
         h3 Try something new
         div(ng-click="ViewCourse(courseR['_id'])").uni9-div-res
@@ -38,6 +52,3 @@ div.container-fluid.row.uni9-home
                 div.col-5
                     p.uni9-pres-res-right {{courseD['times']}}{{courseD['day']}} {{courseD['time']}}
 
-div.container-fluid.row.uni9-home
-    p.
-        Bla
