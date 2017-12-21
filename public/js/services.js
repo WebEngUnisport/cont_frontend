@@ -6,5 +6,5 @@
 // Demonstrate how to register services
 // In this case it is a simple value service.
 angular.module('myApp.services', []).
-  value('version', '0.5').
-  value('backend','http://localhost:8080');
+  value('version', '1.0').
+  value('backend','https://unisport9-backend.herokuapp.com');
