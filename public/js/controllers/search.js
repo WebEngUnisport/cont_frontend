@@ -16,13 +16,11 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
     var printCourses = function(data){
         $('#results').css('display',"block");
         $scope.courses = data;
-        //$('#results').text("test");
     }
 
     $scope.ViewCourse = function(id){
         $rootScope.courseToShow = id;        
         $location.path('showCourse');
-        //console.log(id);
     }
     
 }
@@ -60,7 +58,6 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
         $('#filter').css('display',"block");
         $scope.data = data;
         $scope.courses = $scope.data;
-        //$('#results').text("test");
     }
 
     $scope.Filter = function(id){
@@ -82,7 +79,6 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
     $scope.ViewCourse = function(id){
         $rootScope.courseToShow = id;        
         $location.path('showCourse');
-        //console.log(id);
     }
 
   }]).controller('Uni', ['$scope','$http','$rootScope','$location','backend',function ($scope, $http,$rootScope,$location,backend) {
@@ -116,13 +112,11 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
     var printCourses = function(data){
         $('#results').css('display',"block");
         $scope.courses = data;
-        //$('#results').text("test");
     }
 
     $scope.ViewCourse = function(id){
         $rootScope.courseToShow = id;        
         $location.path('showCourse');
-        //console.log(id);
     }
     
 
@@ -176,13 +170,13 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
            console.log("Error on server");
        });
 
-  }]).controller('Days', ['$scope','$http','$rootScope','backend',function ($scope, $http,$rootScope,backend) {
+  }]).controller('Days', ['$scope','$http','$rootScope','$location','backend',function ($scope, $http,$rootScope,$location,backend) {
 
     $scope.formData = {};
     $scope.processForm = function(){
         $http({
             method  : 'GET',
-            url     : backend+'/university/'+$scope.formData.select+"/courses"
+            url     : backend+'/day/'+$scope.formData.select
            })
            .
            success(function (data, status, headers, config) {
@@ -194,15 +188,31 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
     }
     
     var printCourses = function(data){
-        $('#results').css('display',"block");
-        $scope.courses = data;
-        //$('#results').text("test");
+        $('#results').css('display',"block");        
+        $('#filter').css('display',"block");
+        $scope.data = data;
+        $scope.courses = $scope.data;
     }
 
     $scope.ViewCourse = function(id){
         $rootScope.courseToShow = id;        
         $location.path('showCourse');
-        //console.log(id);
+    }
+
+    $scope.Filter = function(id){
+        var filtered = [];
+        if(id != "ALL"){
+            for (var i = 0; i<$scope.data.length;i++){
+                var data = $scope.data[i]
+                if(data['university']['code']==id){
+                    filtered.push(data);
+                }
+            }
+            $scope.courses = filtered;
+        }
+        else{
+            $scope.courses = $scope.data;
+        }
     }
 
   }])
