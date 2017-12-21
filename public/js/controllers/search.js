@@ -14,6 +14,7 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
        });
     
     var printCourses = function(data){
+        $('#loading').css('display','none');
         $('#results').css('display',"block");
         $scope.courses = data;
     }
@@ -26,6 +27,8 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
 }
 
   ]).controller('Categories', ['$scope','$http','$rootScope','$location','backend',function ($scope, $http,$rootScope,$location,backend) {
+
+    var isDate = false;
 
     $http({
         method  : 'GET',
@@ -40,20 +43,46 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
        });
     $scope.formData = {};
     $scope.processForm = function(){
-        $http({
-            method  : 'GET',
-            url     : backend+'/categories/'+$scope.formData.select
-           })
-           .
-           success(function (data, status, headers, config) {
-                printCourses(data);
-           }).
-           error(function(error){
-               console.log("Error on server");
-           });
+        if(isDate){
+            var from = $scope.formData.dateFrom;
+            var to = $scope.formData.dateTo
+
+            if(from>to){
+                console.log("To smaller than from")
+                var temp = from;
+                from = to;
+                to = temp;
+            }
+            $http({
+                method  : 'GET',
+                url     : backend+'/categories/'+$scope.formData.select+"?from="+from+"&to="+to
+               })
+               .
+               success(function (data, status, headers, config) {
+                    printCourses(data);
+               }).
+               error(function(error){
+                   console.log("Error on server");
+               });
+        }
+        else{
+            $http({
+                method  : 'GET',
+                url     : backend+'/categories/'+$scope.formData.select
+               })
+               .
+               success(function (data, status, headers, config) {
+                    printCourses(data);
+               }).
+               error(function(error){
+                   console.log("Error on server");
+               });
+        }
+        
     }
     
     var printCourses = function(data){
+        $('#loading').css('display','none');
         $('#results').css('display',"block");
         $('#filter').css('display',"block");
         $scope.data = data;
@@ -81,7 +110,25 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
         $location.path('showCourse');
     }
 
+    $scope.DateToggle = function(){
+        if(isDate){
+            $('#date').removeClass("btn-danger");
+            $('#date').addClass("btn-success")
+            $('#from').prop("disabled",true);
+            $('#to').prop("disabled",true);
+            isDate = false;
+        }else{
+            $('#date').removeClass("btn-success");
+            $('#date').addClass("btn-danger");
+            $('#from').removeAttr("disabled");
+            $('#to').removeAttr("disabled");
+            isDate = true;
+        }
+    }
+
   }]).controller('Uni', ['$scope','$http','$rootScope','$location','backend',function ($scope, $http,$rootScope,$location,backend) {
+
+    var isDate = false;
 
     $http({
         method  : 'GET',
@@ -94,22 +141,53 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
        error(function(error){
            console.log("Error on server");
        });
+
+
     $scope.formData = {};
     $scope.processForm = function(){
-        $http({
-            method  : 'GET',
-            url     : backend+'/university/'+$scope.formData.select+"/courses"
-           })
-           .
-           success(function (data, status, headers, config) {
-                printCourses(data);
-           }).
-           error(function(error){
-               console.log("Error on server");
-           });
+
+        if(isDate){
+            var from = $scope.formData.dateFrom;
+            var to = $scope.formData.dateTo
+
+            if(from>to){
+                console.log("To smaller than from")
+                var temp = from;
+                from = to;
+                to = temp;
+            }
+            $http({
+                method  : 'GET',
+                url     : backend+'/university/'+$scope.formData.select+"/courses"+"?from="+from+"&to="+to
+               })
+               .
+               success(function (data, status, headers, config) {
+                    printCourses(data);
+               }).
+               error(function(error){
+                   console.log("Error on server");
+               });
+            
+        }
+        else{
+            $http({
+                method  : 'GET',
+                url     : backend+'/university/'+$scope.formData.select+"/courses"
+               })
+               .
+               success(function (data, status, headers, config) {
+                    printCourses(data);
+               }).
+               error(function(error){
+                   console.log("Error on server");
+               });
+
+        }
+        
     }
     
     var printCourses = function(data){
+        $('#loading').css('display','none');
         $('#results').css('display',"block");
         $scope.courses = data;
     }
@@ -117,6 +195,22 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
     $scope.ViewCourse = function(id){
         $rootScope.courseToShow = id;        
         $location.path('showCourse');
+    }
+
+    $scope.DateToggle = function(){
+        if(isDate){
+            $('#date').removeClass("btn-danger");
+            $('#date').addClass("btn-success")
+            $('#from').prop("disabled",true);
+            $('#to').prop("disabled",true);
+            isDate = false;
+        }else{
+            $('#date').removeClass("btn-success");
+            $('#date').addClass("btn-danger");
+            $('#from').removeAttr("disabled");
+            $('#to').removeAttr("disabled");
+            isDate = true;
+        }
     }
     
 
@@ -188,6 +282,7 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
     }
     
     var printCourses = function(data){
+        $('#loading').css('display','none');
         $('#results').css('display',"block");        
         $('#filter').css('display',"block");
         $scope.data = data;

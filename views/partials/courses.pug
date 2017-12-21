@@ -1,6 +1,8 @@
 div()
     div.container
         h1 All courses
+    div.container#loading
+        p Loading...
     div(id="results" class="uni9-div-pres-res").container
             div(ng-repeat="course in courses" ng-click="ViewCourse(course['_id'])" class="uni9-div-res")
                 div.row

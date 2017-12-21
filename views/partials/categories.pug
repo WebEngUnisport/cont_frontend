@@ -6,6 +6,16 @@ div()
                     div.form-group
                         select(ng-model="formData.select" ng-options="cat['code'] as cat['name'] for cat in categories").form-control
                         br
+                        div.row
+                            div.col-3
+                                div(ng-click="DateToggle()").btn.btn-success#date Pick a date
+                            div.col-3
+                                span From: 
+                                input(ng-model="formData.dateFrom" type="date" disabled id="from")
+                            div.col-3
+                                span To: 
+                                input(ng-model="formData.dateTo" type="date" disabled id="to")
+                        br
                         button(
                             type='submit'
                             ).btn.btn-lg.btn-primary.btn-block Search
