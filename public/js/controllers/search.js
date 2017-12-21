@@ -310,4 +310,82 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
         }
     }
 
+  }]).controller('Dates', ['$scope','$http','$rootScope','$location','backend',function ($scope, $http,$rootScope,$location,backend) {
+
+    $scope.formData = {};
+    $scope.processForm = function(){
+
+        $('#loading').css('display','block');
+        $('#bottom').css('display','none');
+        var from = $scope.formData.dateFrom;
+        var to = $scope.formData.dateTo
+
+        if(from&&to){
+
+            if(from>to){
+                console.log("To smaller than from")
+                var temp = from;
+                from = to;
+                to = temp;
+            }
+            $http({
+                method  : 'GET',
+                url     : backend+'/courses?from='+from+"&to="+to
+               })
+               .
+               success(function (data, status, headers, config) {
+                    printCourses(data);
+               }).
+               error(function(error){
+                   console.log("Error on server");
+               });
+            
+        }
+        else{
+            $http({
+                method  : 'GET',
+                url     : backend+'/courses'
+               })
+               .
+               success(function (data, status, headers, config) {
+                    printCourses(data);
+               }).
+               error(function(error){
+                   console.log("Error on server");
+               });
+
+        }
+        
+    }
+    
+    var printCourses = function(data){
+        $('#loading').css('display','none');
+        $('#bottom').css('display',"block"); 
+        $('#results').css('display',"block");        
+        $('#filter').css('display',"block");
+        $scope.data = data;
+        $scope.courses = $scope.data;
+    }
+
+    $scope.ViewCourse = function(id){
+        $rootScope.courseToShow = id;        
+        $location.path('showCourse');
+    }
+
+    $scope.Filter = function(id){
+        var filtered = [];
+        if(id != "ALL"){
+            for (var i = 0; i<$scope.data.length;i++){
+                var data = $scope.data[i]
+                if(data['university']['code']==id){
+                    filtered.push(data);
+                }
+            }
+            $scope.courses = filtered;
+        }
+        else{
+            $scope.courses = $scope.data;
+        }
+    } 
+
   }])

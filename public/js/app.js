@@ -34,9 +34,9 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/days',
       controller: 'Days'
     }).
-    when('/search', {
-      templateUrl: 'partials/search',
-      controller: 'Search'
+    when('/search/dates', {
+      templateUrl: 'partials/dates',
+      controller: 'Dates'
     }).
     when('/showCourse', {
       templateUrl: 'partials/showCourses',
