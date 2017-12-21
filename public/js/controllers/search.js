@@ -228,7 +228,7 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
            var material = "No requirements";
 
            if('description' in data){
-            description = data['description'].replace(new RegExp("\n",'g'),'<br\>').replace(new RegExp("ONLINE\s?.?\s?[iI]\S?",'g'),' ');
+            description = data['description'].replace(new RegExp("\n",'g'),'<br\>').replace(new RegExp("ONLINE\\s?.?\\s?[iI][.]?",'g'),'');
            }
            else{
                description = "No description provided";
