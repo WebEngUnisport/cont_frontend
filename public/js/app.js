@@ -38,6 +38,10 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/dates',
       controller: 'Dates'
     }).
+    when('/search/today', {
+      templateUrl: 'partials/today',
+      controller: 'Today'
+    }).
     when('/showCourse', {
       templateUrl: 'partials/showCourses',
       controller: 'ShowCourses'

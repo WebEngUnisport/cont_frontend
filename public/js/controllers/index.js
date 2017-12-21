@@ -19,10 +19,8 @@ controller('Index', ['$scope','$rootScope','$http','$location','backend',functio
            console.log("Error on server");
        });
     var time = new Date();
-    var from = time.getFullYear()+"-"+(time.getMonth()+1)+"-"+time.getDate();
-    var to = time.getFullYear()+"-"+(time.getMonth()+1)+"-"+(time.getDate()+1);
-    //var from = date;
-    //var to = date;
+    var from = time.getFullYear()+"-"+(time.getMonth()+1)+"-"+time.getDate()+"T00:00:00";
+    var to = time.getFullYear()+"-"+(time.getMonth()+1)+"-"+(time.getDate())+"T24:00:00";
     $http({
         method  : 'GET',
         url     : backend+'/random'+"?from="+from+"&to="+to

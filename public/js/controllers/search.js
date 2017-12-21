@@ -55,7 +55,7 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
             }
             $http({
                 method  : 'GET',
-                url     : backend+'/categories/'+$scope.formData.select+"?from="+from+"&to="+to
+                url     : backend+'/categories/'+$scope.formData.select+"?from="+from+"T00:00:00&to="+to+"T24:00:00"
                })
                .
                success(function (data, status, headers, config) {
@@ -158,7 +158,7 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
             }
             $http({
                 method  : 'GET',
-                url     : backend+'/university/'+$scope.formData.select+"/courses"+"?from="+from+"&to="+to
+                url     : backend+'/university/'+$scope.formData.select+"/courses"+"?from="+from+"T00:00:00&to="+to+"T24:00:00"
                })
                .
                success(function (data, status, headers, config) {
@@ -318,7 +318,7 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
         $('#loading').css('display','block');
         $('#bottom').css('display','none');
         var from = $scope.formData.dateFrom;
-        var to = $scope.formData.dateTo
+        var to = $scope.formData.dateTo;
 
         if(from&&to){
 
@@ -330,7 +330,7 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
             }
             $http({
                 method  : 'GET',
-                url     : backend+'/courses?from='+from+"&to="+to
+                url     : backend+'/courses?from='+from+"T00:00:00&to="+to+"T24:00:00"
                })
                .
                success(function (data, status, headers, config) {
@@ -388,4 +388,53 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
         }
     } 
 
-  }])
+  }]).controller('Today', ['$scope','$rootScope','$http','$location','backend',function ($scope,$rootScope,$http,$location,backend) {
+
+    var time = new Date();
+    var from = time.getFullYear()+"-"+(time.getMonth()+1)+"-"+time.getDate();
+    var to = time.getFullYear()+"-"+(time.getMonth()+1)+"-"+(time.getDate());
+
+    $http({
+        method  : 'GET',
+        url     : backend+'/courses?from='+from+"T00:00:00&to="+to+"T24:00:00"
+       })
+       .
+       success(function (data, status, headers, config) {
+           printCourses(data);
+            
+       }).
+       error(function(error){
+           console.log("Error on server");
+       });
+
+       var printCourses = function(data){
+        $('#loading').css('display','none');
+        $('#bottom').css('display',"block"); 
+        $('#results').css('display',"block");        
+        $('#filter').css('display',"block");
+        $scope.data = data;
+        $scope.courses = $scope.data;
+    }
+
+    $scope.ViewCourse = function(id){
+        $rootScope.courseToShow = id;        
+        $location.path('showCourse');
+    }
+
+    $scope.Filter = function(id){
+        var filtered = [];
+        if(id != "ALL"){
+            for (var i = 0; i<$scope.data.length;i++){
+                var data = $scope.data[i]
+                if(data['university']['code']==id){
+                    filtered.push(data);
+                }
+            }
+            $scope.courses = filtered;
+        }
+        else{
+            $scope.courses = $scope.data;
+        }
+    } 
+}]
+)

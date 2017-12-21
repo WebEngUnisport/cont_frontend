@@ -1,0 +1,35 @@
+div
+    div.container
+        h1 Today's courses
+    br
+    div.container#loading
+        p Getting results...
+    div.container.uni9-hidde#filter
+        div.row
+            div.col-2
+                h4 Filter
+            div.col-2
+                button(ng-click="Filter('BE')").btn.btn-dark.btn-lg.uni9-button BE
+            div.col-2
+                button(ng-click="Filter('NE')").btn.btn-dark.btn-lg.uni9-button NE
+            div.col-2
+                button(ng-click="Filter('FRI')").btn.btn-dark.btn-lg.uni9-button FRI
+            div.col-2
+                button(ng-click="Filter('ALL')").btn.btn-dark.btn-lg.uni9-button All courses
+    br
+    br
+
+    div(id="results" class="uni9-div-pres-res").container
+        div(ng-repeat="course in courses" ng-click="ViewCourse(course['_id'])" class="uni9-div-res")
+            div.row
+                div.col-5
+                    h5 {{course['sport']}}
+                div.col-5
+                div.col-2
+                    p {{course['university']['code']}}
+            div.row
+                div.col-5
+                    p {{course['category']['name']}}
+                div.col-2
+                div.col-5
+                    p.uni9-pres-res-right {{course['times']}}{{course['day']}} {{course['time']}}
