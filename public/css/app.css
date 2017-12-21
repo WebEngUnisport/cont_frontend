@@ -38,6 +38,10 @@
   cursor: pointer;
 }
 
+.uni9-div-res:hover{
+  background-color: ghostwhite;
+}
+
 .uni9-div-pres-res{
   display: none;
   height: 400px;

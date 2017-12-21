@@ -19,7 +19,8 @@ div()
                         button(
                             type='submit'
                             ).btn.btn-lg.btn-primary.btn-block Search
-
+        div.uni9-hidde.container#info
+            h5 Click on results to show more informaitons
         div(id="results" class="uni9-div-pres-res").container
             div(ng-repeat="course in courses" ng-click="ViewCourse(course['_id'])" class="uni9-div-res")
                 div.row

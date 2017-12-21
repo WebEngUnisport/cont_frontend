@@ -15,6 +15,7 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
     
     var printCourses = function(data){
         $('#loading').css('display','none');
+        $('#info').css('display',"block");
         $('#results').css('display',"block");
         $scope.courses = data;
     }
@@ -83,6 +84,7 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
     
     var printCourses = function(data){
         $('#loading').css('display','none');
+        $('#info').css('display',"block");
         $('#results').css('display',"block");
         $('#filter').css('display',"block");
         $scope.data = data;
@@ -189,6 +191,7 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
     var printCourses = function(data){
         $('#loading').css('display','none');
         $('#results').css('display',"block");
+        $('#info').css('display',"block");
         $scope.courses = data;
     }
 
@@ -283,6 +286,7 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
     
     var printCourses = function(data){
         $('#loading').css('display','none');
+        $('#info').css('display',"block");
         $('#results').css('display',"block");        
         $('#filter').css('display',"block");
         $scope.data = data;
@@ -360,6 +364,7 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
     
     var printCourses = function(data){
         $('#loading').css('display','none');
+        $('#info').css('display',"block");
         $('#bottom').css('display',"block"); 
         $('#results').css('display',"block");        
         $('#filter').css('display',"block");
@@ -409,6 +414,7 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
 
        var printCourses = function(data){
         $('#loading').css('display','none');
+        $('#info').css('display',"block");
         $('#bottom').css('display',"block"); 
         $('#results').css('display',"block");        
         $('#filter').css('display',"block");

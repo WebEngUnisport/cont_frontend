@@ -18,7 +18,8 @@ div
                 button(ng-click="Filter('ALL')").btn.btn-dark.btn-lg.uni9-button All courses
     br
     br
-
+    div.uni9-hidde.container#info
+        h5 Click on results to show more informaitons
     div(id="results" class="uni9-div-pres-res").container
         div(ng-repeat="course in courses" ng-click="ViewCourse(course['_id'])" class="uni9-div-res")
             div.row
