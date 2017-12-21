@@ -57,8 +57,26 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
     
     var printCourses = function(data){
         $('#results').css('display',"block");
-        $scope.courses = data;
+        $('#filter').css('display',"block");
+        $scope.data = data;
+        $scope.courses = $scope.data;
         //$('#results').text("test");
+    }
+
+    $scope.Filter = function(id){
+        var filtered = [];
+        if(id != "ALL"){
+            for (var i = 0; i<$scope.data.length;i++){
+                var data = $scope.data[i]
+                if(data['university']['Code']==id){
+                    filtered.push(data);
+                }
+            }
+            $scope.courses = filtered;
+        }
+        else{
+            $scope.courses = $scope.data;
+        }
     }
 
     $scope.ViewCourse = function(id){
@@ -117,12 +135,30 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
        .
        success(function (data, status, headers, config) {
            var description = "";
+           var price = "No info";
+           var times = "";
+
            if('description' in data){
-            description = data['description'].replace(new RegExp("\n",'g'),'<br\>');
+            description = data['description'].replace(new RegExp("\n",'g'),'<br\>').replace(new RegExp("ONLINE.?i\S?",'g'),' ');
            }
-           
+           else{
+               description = "No description provided";
+           }
+           if('price' in data){
+               price = data['price'];
+           }
+           if('times' in data){
+               times = data['times'];
+           }
+           else{
+               times = data['day'] + " " + data['time'];
+           }
            $scope.courses = data;
            $('#description').html(description);
+           $('#price').html(price);
+           $('#times').html(times);
+
+           $('#show').css('display','block');
        }).
        error(function(error){
            console.log("Error on server");

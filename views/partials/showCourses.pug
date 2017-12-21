@@ -1,5 +1,31 @@
-div.container
+div.container.uni9-courses-show#show
     h2 {{courses['sport']}}
-    p(id="description")
-    p More informations: 
-        a(href="{{courses['link']}}" target="_blank") {{courses['link']}}
+    br
+    table.table
+        tbody
+            tr
+                th(scope="row") Category
+                td {{courses['category']['name']}}
+            tr
+                th(scope="row") Descritpion
+                td(id="description")
+            tr
+                th(scope="row") University
+                td {{courses['university']['Name']}}
+            tr
+                th(scope="row") Time
+                td(id="times")
+            tr
+                th(scope="row") Place
+                td {{courses['place']}}
+            tr
+                th(scope="row") Instructor
+                td  {{courses['instructor']}}   
+            tr
+                th(scope="row") Price
+                td(id="price")       
+            tr
+                th(scope="row") More informations
+                td
+                  a(href="{{courses['link']}}" target="_blank") {{courses['link']}}
+            

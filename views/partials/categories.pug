@@ -4,11 +4,28 @@ div()
     div.container
         form(ng-submit='processForm()')
                     div.form-group
-                        select(ng-model="formData.select" ng-options="cat['Code'] as cat['Name'] for cat in categories").form-control
+                        select(ng-model="formData.select" ng-options="cat['code'] as cat['name'] for cat in categories").form-control
                         br
                         button(
                             type='submit'
                             ).btn.btn-lg.btn-primary.btn-block Search
+
+        br
+
+        div.container.uni9-hidde#filter
+            div.row
+                div.col
+                    h4 Filter
+                div.col
+                    button(ng-click="Filter('BE')").btn.btn-dark.btn-lg BE
+                div.col
+                    button(ng-click="Filter('NE')").btn.btn-dark.btn-lg NE
+                div.col
+                    button(ng-click="Filter('FRI')").btn.btn-dark.btn-lg FRI
+                div.col
+                    button(ng-click="Filter('ALL')").btn.btn-dark.btn-lg All courses
+        br
+        br
 
         div(id="results" class="uni9-div-pres-res").container
             div(ng-repeat="course in courses" ng-click="ViewCourse(course['_id'])" class="uni9-div-res")
@@ -20,7 +37,7 @@ div()
                         p {{course['university']['Code']}}
                 div.row
                     div.col-5
-                        p {{course['activity']}}
+                        p {{course['category']['name']}}
                     div.col-2
                     div.col-5
-                        p.uni9-pres-res-right {{course['times']}}{{course['Tag']}} {{course['Zeit']}}
+                        p.uni9-pres-res-right {{course['times']}}{{course['day']}} {{course['time']}}

@@ -61,3 +61,11 @@ div.uni9-home p{
 .uni9-div-right{
   background-color: darkgrey;
 }
+
+.uni9-courses-show{
+  display: none;
+}
+
+.uni9-hidde{
+  display: none;
+}
