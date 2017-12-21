@@ -137,6 +137,7 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
            var description = "";
            var price = "No info";
            var times = "";
+           var material = "No requirements";
 
            if('description' in data){
             description = data['description'].replace(new RegExp("\n",'g'),'<br\>').replace(new RegExp("ONLINE.?i\S?",'g'),' ');
@@ -151,12 +152,23 @@ controller('AllCourses', ['$scope','$http','$rootScope','$location','backend',fu
                times = data['times'];
            }
            else{
-               times = data['day'] + " " + data['time'];
+               times = data['day'];
+               if('time' in data){
+                   times += " " + data['time'];
+               }
+           }
+           if('material' in data){
+                material = data['material'];
+           }
+           if('requirements' in data){
+               $('#requirements').html(data['requirements']);
+               $('#req-tr').css('display','table-row');
            }
            $scope.courses = data;
            $('#description').html(description);
            $('#price').html(price);
            $('#times').html(times);
+           $('#material').html(material);
 
            $('#show').css('display','block');
        }).

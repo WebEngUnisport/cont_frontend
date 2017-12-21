@@ -20,10 +20,16 @@ div.container.uni9-courses-show#show
                 td {{courses['place']}}
             tr
                 th(scope="row") Instructor
-                td  {{courses['instructor']}}   
+                td  {{courses['instructor']}}  
+            tr#req-tr.uni9-hidde
+                th(scope="row") Requirements
+                td(id="requirements")
             tr
                 th(scope="row") Price
-                td(id="price")       
+                td(id="price")
+            tr
+                th(scope="row") Material
+                td(id="material")
             tr
                 th(scope="row") More informations
                 td
