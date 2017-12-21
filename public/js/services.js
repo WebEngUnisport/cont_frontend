@@ -7,4 +7,4 @@
 // In this case it is a simple value service.
 angular.module('myApp.services', []).
   value('version', '1.0').
-  value('backend','http://webengi.marom.ch:8080');
+  value('backend','https://unisport9-backend.herokuapp.com');

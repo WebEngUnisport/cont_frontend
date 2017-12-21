@@ -21,7 +21,7 @@ var app = module.exports = express();
  */
 
 // all environments
-const PORT = process.env.PORT || 8088;
+const PORT = process.env.PORT || 80;
 app.set('port', PORT);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
