@@ -7,7 +7,35 @@ controller('Index', ['$scope','$rootScope','$http','$location','backend',functio
        })
        .
        success(function (data, status, headers, config) {
-            $scope.course = data;
+           if(data == "empty"){
+            $scope.courseR = {'sport':"No sport today"};
+           }
+           else{
+            $scope.courseR = data;
+           }
+            
+       }).
+       error(function(error){
+           console.log("Error on server");
+       });
+    var time = new Date();
+    var from = time.getFullYear()+"-"+(time.getMonth()+1)+"-"+time.getDate();
+    var to = time.getFullYear()+"-"+(time.getMonth()+1)+"-"+(time.getDate()+1);
+    //var from = date;
+    //var to = date;
+    $http({
+        method  : 'GET',
+        url     : backend+'/random'+"?from="+from+"&to="+to
+       })
+       .
+       success(function (data, status, headers, config) {
+           if(data == "empty"){
+               $scope.courseD = {'sport':"No sport today"};
+           }
+           else{
+            $scope.courseD = data;
+           }
+            
        }).
        error(function(error){
            console.log("Error on server");
